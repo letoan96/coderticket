@@ -19,18 +19,18 @@ class EventsController < ApplicationController
   	@event = Event.new event_params
   	@venue = Venue.new venue_params
     @event[:creater_id]=current_user.id
-  	if @venue.save
-  		@event[:venue_id] = @venue.id
-  		if @event.save
+    if @venue.save
+      @event[:venue_id] = @venue.id
+      if @event.save
         flash[:success] = "Your event has been created"
-  			redirect_to root_path
-  		else
+        redirect_to root_path
+      else
         @venue.rollback
-  			render 'new'
-  		end
-  	else
-  		render 'new'
-  	end
+        render 'new'
+      end
+    else
+      render 'new'
+    end
   end
 
   def my_event
@@ -51,21 +51,25 @@ class EventsController < ApplicationController
     end
   end
 
-    def edit
-      @event = Event.find(params[:event_id])
-      @venue = Event.find(@event.id)
+  def edit
+    @event = Event.find(params[:event_id])
+    @venue = Venue.find(@event.id)
+  end
+
+  def update
+    @event = Event.find(params[:event_id])
+    @venue = Venue.find(params[:event_id])
+    if @venue.update(venue_params) &&  @event.update(event_params)
+    flash[:success] = " Event has been updated "
+    redirect_to my_event_event_path(current_user)
+    else
+      render 'new'
     end
 
-    def update
-      @event = Event.find(params[:event_id])
-      @venue = Event.find(@event.id)
-      @event.update(event_params)
-      @venue.update(venue_params)
-      
-        flash[:success] = " Event has been updated "
-        redirect_to redirect_to my_event_event_path(current_user)
-  
-    end
+
+
+
+  end
 
 
 
@@ -75,7 +79,7 @@ class EventsController < ApplicationController
   end
 
   def venue_params
-  	params.require(:venue).permit(:name, :full_address, :ends_at, :region_id)
+  	params.require(:venue).permit(:name, :full_address, :region_id)
   end
 
 end

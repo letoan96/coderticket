@@ -1,9 +1,9 @@
 class Event < ActiveRecord::Base
-  belongs_to :venue
+  belongs_to :venue, dependent: :destroy
   belongs_to :category
-  has_many :ticket_types
+  has_many :ticket_types, dependent: :destroy
 
-  validates_presence_of :extended_html_description, :venue, :category, :starts_at
+  validates_presence_of :extended_html_description, :venue_id, :category, :starts_at
   validates_uniqueness_of :name, uniqueness: {scope: [:venue, :starts_at]}
 
   def self.upcoming
@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.search (search)
-  	Event.where("name ILIKE ?", "%#{search}%")
+  	Event.where("name ILIKE ? AND published_at is not ? ", "%#{search}%",nil)
   end
 
   def tickets
