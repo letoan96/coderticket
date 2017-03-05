@@ -1,0 +1,29 @@
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+    <a class="navbar-brand" href="<%= root_path %>">Coder Ticket</a>
+    <div>
+    <ul class="nav navbar-nav">
+      <% if current_user %>
+        <li class="nav-item ">
+          <%= link_to "Log out #{current_user}", log_out_path,  class: "nav-link text-danger" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Create event", new_event_path,  class: "nav-link text-success" %>
+        </li>
+        
+        <li class="nav-item ">
+          <%= link_to "Created event",my_event_event_path(current_user.id),class: "nav-link text-info" %>
+        </li>
+        
+
+
+      <% else %>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= new_session_path %>">Sign In</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= new_user_path %>">Sign Up</a>
+      </li>
+      <% end %>
+    </ul>
+    </div>
+  </nav>
