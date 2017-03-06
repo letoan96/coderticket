@@ -9,4 +9,12 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
+  describe "Get #create" do
+  	it "returns create session success" do
+  		get :create
+  		expect(response).to have_http_status(:success)
+  	end
+  end
+
+
 end
