@@ -18,18 +18,17 @@ class EventsController < ApplicationController
   def create
   	@event = Event.new event_params
   	@venue = Venue.new venue_params
-    @event[:creater_id]=current_user.id
-    if @venue.save
+    @event[:creater_id] = current_user.id
+    if @venue.save 
       @event[:venue_id] = @venue.id
       if @event.save
         flash[:success] = "Your event has been created"
         redirect_to root_path
       else
-        @venue.rollback
         render 'new'
       end
     else
-      render 'new'
+        render 'new'
     end
   end
 
@@ -46,7 +45,7 @@ class EventsController < ApplicationController
       flash[:success] = " Your event has been published "
       redirect_to my_event_event_path(current_user.id)
     else
-      flash[:error] = " An event must have at least one ticket type "
+      flash[:error] = " An event must has at least one ticket type "
       redirect_to my_event_event_path(current_user.id)
     end
   end

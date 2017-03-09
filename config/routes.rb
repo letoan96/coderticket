@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   post 'checkout' => 'tickets#checkout'
   get 'publish' => 'events#publish'
   get 'select_ticket_type' => 'tickets#select_ticket_type'
+  get 'auth/:provider/callback' => 'sessions#login_via_facebook'
+  
   resources :sessions, only: [:new, :create]
   resources :users
   resources :events do

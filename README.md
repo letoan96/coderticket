@@ -12,7 +12,7 @@
 The following **required** functionality is complete:
 
 * [x] Implement required user stories
-* [ ] 10 model tests, 2 route tests, 2 controller tests, 2 view tests.
+* [x] 10 model tests, 2 route tests, 2 controller tests, 2 view tests. -> not 100% and I dont know if I do it right way.
 
 The person with best test coverage will win a small present from the instructor :)
 
@@ -59,7 +59,7 @@ The person with best test coverage will win a small present from the instructor 
 ### Optional Stories
 
 * [ ] Users cannot buy tickets to events that occur in the past.
-* [ ] Users can log in with Facebook.
+* [x] Users can log in with Facebook.
 * [ ] Users receive an email when they have purchased a ticket.
 * [ ] Users can see "related events" when browsing an event. Related events should belong to the same category and be in the same region.
 * [ ] User A can allow User B to edit User A's event. In other words, an event owner can assign other people to be "event admins".
@@ -68,9 +68,7 @@ The person with best test coverage will win a small present from the instructor 
 * [ ] Instead of showing all of the events on the main page, an "admin" user can dictate the events that show up on the main page.
 
 ## Notes
-I'm sorry, I have not met all required stories.
-I have less time this week because I have some practical classes with important assignments. 
-I really tried my best. 
+
 ## License
 
     Copyright [2017] [LeToan]
