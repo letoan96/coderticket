@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'publish' => 'events#publish'
   get 'select_ticket_type' => 'tickets#select_ticket_type'
   get 'auth/:provider/callback' => 'sessions#login_via_facebook'
+  delete 'delete' => 'events#destroy'
+  get 'unpublish' => 'events#unpublish'
   
   resources :sessions, only: [:new, :create]
   resources :users

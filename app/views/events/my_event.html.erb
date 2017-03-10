@@ -22,10 +22,12 @@
 						<td><%= event.created_at %></td>
 						<% if event.published_at == nil %>
 						<td><b>Unpublished <b></td>
-						<td> <%= link_to 'Add Ticket',new_event_ticket_path(event_id: event.id), class: 'btn btn-primary' %> | <%= link_to 'Publish', publish_path(event_id: event.id), class: 'btn btn-primary' %> | <%= link_to 'Edit Event',edit_event_path(event_id: event.id), class: 'btn btn-primary' %> </td>
+						<td> <%= link_to 'Add Ticket',new_event_ticket_path(event_id: event.id), class: 'btn btn-primary' %> | <%= link_to 'Publish', publish_path(event_id: event.id), class: 'btn btn-success' %> | <%= link_to 'Edit Event',edit_event_path(event_id: event.id), class: 'btn btn-primary' %></td>
 						<% else %>
 						<td>Published</td>
+						<td><%= link_to 'Unpublish', unpublish_path(event_id: event.id), class: 'btn btn-warning' %></td>
 						<% end %>
+						<td><%= link_to 'Delete', event_path(event_id: event.id), method: 'delete', class: 'btn btn-danger'%></td>
 					</tr>
 					<% end %>
 				</tbody>

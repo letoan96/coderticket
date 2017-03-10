@@ -50,20 +50,35 @@ class EventsController < ApplicationController
     end
   end
 
+  def unpublish
+    @publish = Event.find(params[:event_id])
+    @publish.published_at = nil
+    @publish.save
+    flash[:success] = "Event has been unpublished."
+    redirect_to :back
+  end
+
   def edit
     @event = Event.find(params[:event_id])
-    @venue = Venue.find(@event.id)
+    @venue = Venue.find(@event[:venue_id])
   end
 
   def update
     @event = Event.find(params[:event_id])
-    @venue = Venue.find(params[:event_id])
+    @venue = Venue.find(@event[:venue_id])
     if @venue.update(venue_params) &&  @event.update(event_params)
-    flash[:success] = " Event has been updated "
+    flash[:success] = "Event has been updated."
     redirect_to my_event_event_path(current_user)
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @event = Event.find(params[:event_id])
+    @event.destroy
+    flash[:warning] = " Event has been destroyed."
+    redirect_to :back
   end
 
   private
